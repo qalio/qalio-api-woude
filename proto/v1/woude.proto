@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package woude.v1;
+
+import "proto/v1/common/utils.proto";
+
+message StaffMember {
+  string id = 1;
+  string name = 2;
+  string role = 3;
+  double salary = 4;
+}
+
+message StaffRequest {
+  string organization_id = 1;
+  repeated StaffMember staff = 2;
+}
+
+message StaffResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+service WoudeService {
+  rpc AddStaff(StaffRequest) returns (StaffResponse);
+  rpc UpdateStaff(StaffRequest) returns (StaffResponse);
+  rpc GetStaffList(StaffRequest) returns (StaffResponse);
+}
